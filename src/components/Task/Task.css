@@ -1,0 +1,6 @@
+label{
+    display: block;
+}
+input[type=checkbox]:checked + span{
+    text-decoration: line-through;
+}
