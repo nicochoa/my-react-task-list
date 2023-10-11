@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './Task.css'
 
 
-export const Task = ({ task, i , changeState, taskState}) => {
+export const Task = ({ task, i , onDelete, onUpdate, onChange}) => {
     
     return (
 
@@ -10,13 +10,14 @@ export const Task = ({ task, i , changeState, taskState}) => {
             <input 
             type="checkbox" 
             name={task.name} 
-            checked={taskState} 
+            checked={task.state} 
 
             onChange={()=>{
-                taskState? taskState = false : taskState = true;
                 task.state? task.state = false : task.state = true;
-                changeState(task)}} />
+                onChange(task)}} />
             <span>{task.name}</span>
+            <button onClick={ () => onDelete(task)}>erase</button>
+            <button onClick={()=> onUpdate(task)}>update</button>
         </label>
 
     );

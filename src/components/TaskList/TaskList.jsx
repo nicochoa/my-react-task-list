@@ -1,49 +1,38 @@
 import { useEffect , useState } from "react";
 
 import { Task } from "../Task/Task";
+import { useTasks } from "../../hooks/useTasks";
+
 
 export const TaskList = ({list}) => {
-    let [stateList, setState] = useState([]);
+    const [ stateList, createTask, eraseTask, updateTask, changeTaskState ] = useTasks();
 
-    const changeState = (task) => {
-        let newList = [...stateList];
-        newList = newList.map((e)=>{
-            if (e.name == task.name) {
-                e.state = task.state 
-            }
-            return e;
-        });
-        if (!newList.find(e => e.name === task.name)) {
-            newList.push(task)
-        }
-        localStorage.setItem("tasks",JSON.stringify(newList));
-        setState(newList);
+    const handleUpdateTask = (task)=>{
+        let newName = prompt("actualizar tarea");
+        task.name = newName;
+        updateTask(task);
     }
 
-    const taskState = (task)=>{
-        if(stateList.length) {
-            console.log(stateList);
-            return stateList.find((e)=> e.name == task.name).state;
+    const handleCreateTask = ()=>{
+        let newTaskName = prompt("nueva tarea");
+        let newTask ={
+            name: newTaskName,
         }
-        return task.state;
+        createTask(newTask);
     }
-
-    useEffect(()=>{
-        if (JSON.parse(localStorage.getItem("tasks"))) {
-            let inBrowserTasks = JSON.parse(localStorage.getItem("tasks"));
-            setState(inBrowserTasks);
-        }else{
-            setState(list);
-        }
-        console.log(stateList);
-    }, []);
     
 
     return (
         <div>
-            {list.map((task, i) =>
-                (<Task task={task} key={i} changeState={changeState} taskState={taskState(task)} />)
+            {stateList.map((task, i) =>
+                (<Task 
+                    task={task} 
+                    key={i} c
+                    onDelete={eraseTask} 
+                    onUpdate = {handleUpdateTask}
+                    onChange = {changeTaskState} />)
             )}
+            <button onClick={handleCreateTask}>add</button>
         </div>
     );
 }
