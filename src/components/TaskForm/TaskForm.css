@@ -1,0 +1,22 @@
+form{
+    background: #dedede;
+    min-width: 300px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+form input{
+    display: block;
+    width: -webkit-fill-available;
+    margin-top: .5rem;
+    padding-block: .5rem;
+}
+
+form label{
+    padding: .5rem 1rem;
+}
+form button{
+    margin-inline: 1rem;
+    padding: .5rem 1rem;
+}

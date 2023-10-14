@@ -1,7 +1,10 @@
-import { useEffect , useState } from "react";
+import { useEffect , useState, useContext} from "react";
 
 import { Task } from "../Task/Task";
 import { useTasks } from "../../hooks/useTasks";
+import { TaskForm } from "../TaskForm/TaskForm";
+import './TaskList.css'
+
 
 
 export const TaskList = ({list}) => {
@@ -13,17 +16,14 @@ export const TaskList = ({list}) => {
         updateTask(task);
     }
 
-    const handleCreateTask = ()=>{
-        let newTaskName = prompt("nueva tarea");
-        let newTask ={
-            name: newTaskName,
-        }
+    const handleCreateTask = (newTask)=>{
         createTask(newTask);
     }
-    
+
 
     return (
-        <div>
+        <div id="TaskList">
+            <TaskForm onAdd={handleCreateTask}/>
             {stateList.map((task, i) =>
                 (<Task 
                     task={task} 
@@ -32,7 +32,7 @@ export const TaskList = ({list}) => {
                     onUpdate = {handleUpdateTask}
                     onChange = {changeTaskState} />)
             )}
-            <button onClick={handleCreateTask}>add</button>
+            {/* <button onClick={handleCreateTask}>add</button> */}
         </div>
     );
 }

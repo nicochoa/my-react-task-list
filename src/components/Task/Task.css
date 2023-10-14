@@ -1,5 +1,7 @@
 label{
     display: block;
+    padding: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 input[type=checkbox]:checked + span{
     text-decoration: line-through;

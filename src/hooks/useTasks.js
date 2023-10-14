@@ -1,6 +1,9 @@
-import { useState , useEffect } from "react";
+import { useState , useEffect, useContext, createContext } from "react";
+import { StateListContext } from "/src/StateListContext";
 export function useTasks(){
     let [stateList, setState] = useState([]);
+    
+    // const stateList = useContext(StateListContext);
 
     const createTask = (newTask)=>{
         let newList = [...stateList];
@@ -14,7 +17,7 @@ export function useTasks(){
     const eraseTask = (task)=>{
         let newList = [...stateList];
         let remainingTasks = newList.filter((items)=>{
-            return items.name != task.name;
+            return items.id != task.id;
         });
         setState(remainingTasks);
         localStorage.setItem("tasks",JSON.stringify(remainingTasks));
@@ -24,7 +27,7 @@ export function useTasks(){
         let newList = [...stateList];
         newList = newList.map((e)=>{
             if (e.id == task.id) {
-                e.name = task.name;
+                e.description = task.description;
             }
             return e;
         });
