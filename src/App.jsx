@@ -1,8 +1,9 @@
-import { useState , useEffect , createContext, useContext } from 'react'
+import { BrowserRouter , Routes, Route } from 'react-router-dom'
 import { Header } from './components/header/Header'
-import { TaskForm } from "./components/TaskForm/TaskForm";
-import { TaskList } from './components/TaskList/TaskList'
-import { StateListContext } from "./StateListContext";
+import { Suspense , lazy} from 'react';
+const HomePage = lazy(()=>import("./pages/HomePage"));
+const TaskListPage = lazy(()=>import("./pages/TaskListPage"));
+const AboutUsPage = lazy(()=>import("./pages/AboutUsPage"));
 
 
 const tasks = [
@@ -27,10 +28,26 @@ const tasks = [
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header/>
-      <TaskList list={tasks} />
-    </>
+      <Routes>
+        <Route path='/' element={
+        <Suspense fallback="Ah ah i i tuki tuki">
+          <HomePage/>
+        </Suspense>
+        }/>
+        <Route path='/tasks' element={
+        <Suspense fallback="Ah ah i i tuki tuki">
+          <TaskListPage/>
+        </Suspense>
+        }/>
+        <Route path='/about-us' element={
+        <Suspense fallback="Ah ah i i tuki tuki">
+          <AboutUsPage/>
+        </Suspense>
+        }/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
