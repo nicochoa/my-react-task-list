@@ -1,5 +1,7 @@
 form{
-    background: #dedede;
+    border-radius: 20px;
+    border: 2px solid #dedede;
+    margin-top: 3rem;
     min-width: 300px;
     padding: 1rem;
     display: flex;

@@ -11,8 +11,8 @@ export const TaskList = ({list}) => {
     const [ stateList, createTask, eraseTask, updateTask, changeTaskState ] = useTasks();
 
     const handleUpdateTask = (task)=>{
-        let newName = prompt("actualizar tarea");
-        task.name = newName;
+        let newDescription = prompt("actualizar tarea");
+        task.description = newDescription;
         updateTask(task);
     }
 

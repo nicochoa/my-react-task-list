@@ -1,22 +1,28 @@
 import './Header.css';
 import { Link } from "react-router-dom";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  Heading,
+} from '@chakra-ui/react'
+
 export const Header = () => {
   return (
     <>
-      <h1>To DO App</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/" >Home</Link>
-          </li>
-          <li>
-            <Link to="/tasks" >TaskList</Link>
-          </li>
-          <li>
-            <Link to="/about-us" >AboutUs</Link>
-          </li>
-        </ul>
-      </nav>
+      <Heading as='h1' size='2xl' mt={6} >To DO App</Heading>
+      <Breadcrumb separator='-' display="flex" justifyContent="center" mt={6}>
+        <BreadcrumbItem>
+          <BreadcrumbLink as={Link} to="/" >Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink as={Link} to="/tasks" >TaskList</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink as={Link} to="/about-us" >AboutUs</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
     </>
   );
 }
